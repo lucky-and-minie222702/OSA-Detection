@@ -12,7 +12,6 @@ for i in range(len(records)):
     info = rec[1]
     siglen = len(ann) * 6000
     rec = rec[0][:siglen:].T
-    print(siglen)
     
     # remove outlier
     buffer = 30 # minutes
@@ -22,6 +21,8 @@ for i in range(len(records)):
     ann = ann[buffer::]
     ann = ann[:len(ann)-buffer:]
     rec = rec.T[2::]
+    # scale
+    rec[1] /= 100.0
     np.save(path.join("numpy", f"patient_{i+1}"), rec)
     np.save(path.join("numpy", f"annotation_{i+1}"), ann)
     print(f"Converting patient {i+1} done!")
