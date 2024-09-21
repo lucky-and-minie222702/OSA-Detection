@@ -41,5 +41,5 @@ python3 src/model.py --fit "1, 2, 6, 7" --eval ""
 ### Evaluation on unseen data
 
 ```
-accuracy: 0.9074 - loss: 0.3199
+accuracy: 0.9185 - loss: 0.3036
 ```
