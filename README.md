@@ -16,7 +16,7 @@ python3 src/preprocess.py
 
 ### Data used:
 
-Dataset: [Apnea-ECG-Database](https://physionet.org/content/apnea-ecg/1.0.0/)
+Dataset: [Apnea-ECG Database](https://physionet.org/content/apnea-ecg/1.0.0/)
 
 #### Patients used
 
@@ -28,4 +28,18 @@ Dataset: [Apnea-ECG-Database](https://physionet.org/content/apnea-ecg/1.0.0/)
 1. c01r
 1. c02r
 1. c03r
-    ##### Patients used for the training data: b2 3 4 5 _(recommended)_
+    ##### Patients without OSA: 6, 7, 8
+
+## Final decision
+
+### Train
+
+```zsh
+python3 src/model.py --fit "1, 2, 6, 7" --eval ""
+```
+
+### Evaluation on unseen data
+
+```
+accuracy: 0.9074 - loss: 0.3199
+```
