@@ -58,8 +58,8 @@ epochs = 4
 save_path = path.join("res", "model.keras")
 
 parser = argparse.ArgumentParser(description='Train and evaluate on multiple patients')
-parser.add_argument("-f", "--fit", help="Fit data (patient id)", required=True)
-parser.add_argument("-e", "--eval", help="Evaluate data (patient id)", required=True)
+parser.add_argument("-f", "--fit", help="Fit data (a list of patients' ids, seperated by commas)", required=True)
+parser.add_argument("-e", "--eval", help="Evaluate data (a list of patients' ids, seperated by commas)", required=True)
 args = parser.parse_args()
 patient_list = args.fit.split(",")
 if patient_list[-1] == "":

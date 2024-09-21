@@ -1,6 +1,10 @@
 import numpy as np
 import wfdb
 from os import path
+import os
+
+if not path.isdir("numpy"):
+    os.makedirs("numpy")
 
 records = ["a01r", "a02r", "a03r", "a04r", "b01r", "c01r", "c02r", "c03r"]
 
