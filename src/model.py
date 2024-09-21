@@ -82,8 +82,8 @@ if patient_list != []:
         layers.MaxPooling1D(pool_size=2),
         layers.Conv1D(filters=128, kernel_size=3, activation='relu'),
         layers.MaxPooling1D(pool_size=2),
-        # using data from last 300 seconds
-        layers.SimpleRNN(30, return_sequences=True),
+        # using data from last 60 seconds
+        layers.SimpleRNN(6, return_sequences=True),
         layers.Flatten(),
         layers.Dense(512, activation="relu"),
         layers.Dense(512, activation="relu"),
