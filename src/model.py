@@ -48,9 +48,9 @@ def shuffle_group(X, y, unit, seed=22022009):
     
     return np.array(resX), np.array(resy)
 
-def smoothing(y, units):
+def smoothing(y, unit):
     size = len(y)
-    ans = np.array(np.split(np.array(y), size // units))
+    ans = np.array(np.split(np.array(y), size // unit))
     ans = np.mean(ans, axis=1)
     ans = ans.flatten()
     return np.array(ans)
