@@ -39,7 +39,7 @@ Dataset: [Apnea-ECG Database](https://physionet.org/content/apnea-ecg/1.0.0/)
 ### Train
 
 ```zsh
-python3 src/model.py --fit "1, 2, 6, 7" --eval ""
+python3 src/model.py --fit "1, 2, 6, 7" --eval "" --batch_size 256 --epochs 4 --unit 6
 ```
 
 > **_NOTE:_** These are ideal patients after various experiments
