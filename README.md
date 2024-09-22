@@ -32,7 +32,7 @@ Dataset: [Apnea-ECG Database](https://physionet.org/content/apnea-ecg/1.0.0/)
 1. c03
 
 -   ##### Patients without OSA: 6, 7, 8
--   ##### Patients have witness most OSA: 1, 4
+-   ##### Patients witnessed most OSA: 1, 4
 
 ## Final decision
 
