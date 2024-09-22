@@ -11,14 +11,16 @@ python3 src/model.py -h
 ### Preprocess data
 
 ```zsh
-python3 src/preprocess.py
+python3 src/preprocess.py *unit*
 ```
 
-### Data used:
+> **_NOTE:_** Data unit is how many parts is 1-minute interal being sliced equally
+
+#### Data source:
 
 Dataset: [Apnea-ECG Database](https://physionet.org/content/apnea-ecg/1.0.0/)
 
-#### Patients used _(These patients have needed signals)_
+### Patients used _(These patients have needed signals)_
 
 1. a01
 1. a02

@@ -13,6 +13,8 @@ from sklearn.utils import shuffle
 from collections import Counter
 import os
 
+print('*** Remember to preprocess the data by running the command "python3 src/preprocess.py <unit>"')
+
 def get_patients(plist):
     def get_patient(patientid):
         rec = np.load(path.join("numpy", f"patient_{patientid+1}.npy"))
@@ -54,15 +56,17 @@ def smoothing(y, units):
     return np.array(ans)
 
 records = ["a01r", "a02r", "a03r", "a04r", "b01r", "c01r", "c02r", "c03r"]
-batch_size = 256
-epochs = 4
 if not path.isdir("res"):
     os.makedirs("res")
 save_path = path.join("res", "model.keras")
 
-parser = argparse.ArgumentParser(description='Train and evaluate on multiple patients')
+parser = argparse.ArgumentParser(description='Command line interface to use the model')
 parser.add_argument("-f", "--fit", help="Fit data (a list of patients' ids, seperated by commas, also can be empty)", required=True)
 parser.add_argument("-e", "--eval", help="Evaluate data (a list of patients' ids, seperated by commas, also can be empty)", required=True)
+parser.add_argument("-u", "--unit", help="Data unit (how many parts is 1-minute interal being sliced equally)", required=True, type=int)
+parser.add_argument("-b", "--batch_size", help="Batch size", required=True, type=int)
+parser.add_argument("-ep", "--epochs", help="Epochs", required=True, type=int)
+
 args = parser.parse_args()
 patient_list = args.fit.split(",")
 if patient_list[-1] == "":
@@ -72,11 +76,13 @@ eval_list = args.eval.split(",")
 if eval_list[-1] == "":
     eval_list.pop()
 eval_list = [int(x)-1 for x in eval_list]
-
+unit = int(args.unit)
+batch_size = int(args.batch_size)
+epochs = int(args.epochs)
 
 if patient_list != []:
     model = Sequential([
-        layers.Input(shape=(1000, 2)),
+        layers.Input(shape=(6000//unit, 2)),
         layers.Conv1D(filters=16, kernel_size=3, activation='relu'),
         layers.MaxPooling1D(pool_size=2),
         layers.Conv1D(filters=32, kernel_size=3, activation='relu'),
@@ -98,7 +104,7 @@ if patient_list != []:
         metrics=['accuracy']
     )
     X, y = get_patients(patient_list)
-    X, y = shuffle_group(X, y, 6)
+    X, y = shuffle_group(X, y, unit)
     count = Counter(y)
     print("Apnea cases [1]:", count[1], "Normal cases [0]:", count[0])
     model.fit(
@@ -112,5 +118,5 @@ if patient_list != []:
 if eval_list != []:
     model = load_model(save_path)
     X, y = get_patients(eval_list)
-    X, y = shuffle(X, y, random_state=22022009)
+    X, y = shuffle_group(X, y, unit)
     model.evaluate(X, y, batch_size=batch_size)
