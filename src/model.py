@@ -63,7 +63,7 @@ save_path = path.join("res", "model.keras")
 parser = argparse.ArgumentParser(description='Command line interface to use the model')
 parser.add_argument("-f", "--fit", help="Fit data (a list of patients' ids, seperated by commas, also can be empty)", required=True)
 parser.add_argument("-e", "--eval", help="Evaluate data (a list of patients' ids, seperated by commas, also can be empty)", required=True)
-parser.add_argument("-u", "--unit", help="Data unit (how many parts is 1-minute interal being sliced equally)", required=True, type=int)
+parser.add_argument("-u", "--unit", help="Data unit (how many parts are sliced equally from a 1-minute interval)", required=True, type=int)
 parser.add_argument("-b", "--batch_size", help="Batch size", required=True, type=int)
 parser.add_argument("-ep", "--epochs", help="Epochs", required=True, type=int)
 

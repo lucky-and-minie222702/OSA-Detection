@@ -14,7 +14,7 @@ python3 src/model.py -h
 python3 src/preprocess.py *unit*
 ```
 
-> **_NOTE:_** Data unit is how many parts is 1-minute interal being sliced equally
+> **_NOTE:_** Data unit is how many parts are sliced equally from a 1-minute interval
 
 #### Data source:
 
