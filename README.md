@@ -57,6 +57,8 @@ The prediciton is based on mean of 6 continuous prediction (since the trained da
 
 -   After download the data, rename the folder to "database"
 -   The preprocessed data of patients is stored in the folder named "numpy" (the program itself automatically create the folder) in binary format
+-   The model will be saved at the folder named "res" (it is automatically created)
+-   Please run the program at the root folder
 -   For every annotation for every 6000 signal (100 signals per second) is sliced into 6 10-second intervals
 -   School project UwU
 -   I only use two signal (RespN and SpO2) for training
